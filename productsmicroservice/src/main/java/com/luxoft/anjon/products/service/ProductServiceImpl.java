@@ -22,7 +22,7 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public String createProduct(CreateProductRestModel productRestModel) {
+    public String createProduct(CreateProductRestModel productRestModel) throws Exception{
 
         String productID = UUID.randomUUID().toString();
 
@@ -33,16 +33,20 @@ public class ProductServiceImpl implements ProductService{
         productRestModel.getPrice(),
         productRestModel.getQuantity());
 
-        CompletableFuture<SendResult<String, ProductCreatedEvent>> future = 
-            kafkaTemplate.send("product-created-events-topic", productID, productCreatedEvent);
+        // Comented section is for the Asynschoronouus opration
+        // CompletableFuture<SendResult<String, ProductCreatedEvent>> future = 
+        //     kafkaTemplate.send("product-created-events-topic", productID, productCreatedEvent);
 
-        future.whenComplete((result, exception) -> {
-            if(exception != null) {
-                LOGGGER.error("*** Failed to send message: " + exception.getMessage());
-            } else {
-                LOGGGER.info("*** Message sent successfully: " + result.getRecordMetadata());
-            }
-        });
+        // future.whenComplete((result, exception) -> {
+        //     if(exception != null) {
+        //         LOGGGER.error("*** Failed to send message: " + exception.getMessage());
+        //     } else {
+        //         LOGGGER.info("*** Message sent successfully: " + result.getRecordMetadata());
+        //     }
+        // });
+
+        SendResult<String, ProductCreatedEvent> result = 
+        kafkaTemplate.send("product-created-events-topic", productID, productCreatedEvent).get();
 
         LOGGGER.info("*** Returning Product ID");
         return productID;

@@ -4,5 +4,5 @@ import com.luxoft.anjon.products.rest.CreateProductRestModel;
 
 public interface ProductService {
 
-    String createProduct(CreateProductRestModel productRestModel);
+    String createProduct(CreateProductRestModel productRestModel) throws Exception;
 }
