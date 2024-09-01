@@ -1,4 +1,4 @@
-package com.luxoft.anjon.emailnotificationmicroservice;
+package com.luxoft.anjon.emailnotification;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
