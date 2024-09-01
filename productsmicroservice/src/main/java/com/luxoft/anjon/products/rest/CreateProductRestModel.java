@@ -6,7 +6,7 @@ public class CreateProductRestModel {
 
     private String title;
     private BigDecimal price;
-    private String quantity;
+    private Integer quantity;
     
     public String getTitle() {
         return title;
@@ -20,10 +20,10 @@ public class CreateProductRestModel {
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
-    public String getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
-    public void setQuantity(String quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 }
