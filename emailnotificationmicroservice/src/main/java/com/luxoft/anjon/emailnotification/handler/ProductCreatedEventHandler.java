@@ -6,6 +6,8 @@ import org.springframework.kafka.annotation.KafkaHandler;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
+import com.luxoft.anjon.core.ProductCreatedEvent;
+
 @Component
 @KafkaListener(topics="product-created-events-topic")
 public class ProductCreatedEventHandler {

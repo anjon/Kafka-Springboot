@@ -13,7 +13,7 @@ import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
 
-import com.luxoft.anjon.products.service.ProductCreatedEvent;
+import com.luxoft.anjon.core.ProductCreatedEvent;
 
 @Configuration
 public class KafkaConfig {

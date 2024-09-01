@@ -1,4 +1,4 @@
-package com.luxoft.anjon.products.service;
+package com.luxoft.anjon.core;
 
 import java.math.BigDecimal;
 
