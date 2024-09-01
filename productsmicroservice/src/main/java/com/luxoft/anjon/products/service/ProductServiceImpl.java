@@ -1,7 +1,7 @@
 package com.luxoft.anjon.products.service;
 
 import java.util.UUID;
-import java.util.concurrent.CompletableFuture;
+// import java.util.concurrent.CompletableFuture;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,8 +45,14 @@ public class ProductServiceImpl implements ProductService{
         //     }
         // });
 
+        LOGGGER.info("Before publishing a ProductCreatedEvent");
+
         SendResult<String, ProductCreatedEvent> result = 
         kafkaTemplate.send("product-created-events-topic", productID, productCreatedEvent).get();
+
+        LOGGGER.info("Topic: "+ result.getRecordMetadata().topic());
+        LOGGGER.info("Partition: " + result.getRecordMetadata().partition());
+        LOGGGER.info("Offset: " + result.getRecordMetadata().offset());
 
         LOGGGER.info("*** Returning Product ID");
         return productID;
