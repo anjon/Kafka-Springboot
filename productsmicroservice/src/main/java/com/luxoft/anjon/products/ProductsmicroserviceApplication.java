@@ -1,4 +1,4 @@
-package com.luxoft.anjon.productsmicroservice;
+package com.luxoft.anjon.products;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
