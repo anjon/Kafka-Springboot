@@ -8,6 +8,17 @@
             "mainClass": "com.luxoft.anjon.products.ProductsmicroserviceApplication",
             "projectName": "productsmicroservice",
             "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=45991 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=productsmicroservice"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-EmailnotificationmicroserviceApplication<emailnotificationmicroservice>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.luxoft.anjon.emailnotification.EmailnotificationmicroserviceApplication",
+            "projectName": "emailnotificationmicroservice",
+            "args": "",
             "envFile": "${workspaceFolder}/.env"
         }
     ]
