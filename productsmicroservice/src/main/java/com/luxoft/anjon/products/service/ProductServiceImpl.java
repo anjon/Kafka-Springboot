@@ -3,6 +3,7 @@ package com.luxoft.anjon.products.service;
 import java.util.UUID;
 // import java.util.concurrent.CompletableFuture;
 
+import org.apache.kafka.clients.producer.ProducerRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -13,7 +14,7 @@ import com.luxoft.anjon.core.ProductCreatedEvent;
 import com.luxoft.anjon.products.rest.CreateProductRestModel;
 
 @Service
-public class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl implements ProductService {
 
     KafkaTemplate<String, ProductCreatedEvent> kafkaTemplate;
     private final Logger LOGGGER = LoggerFactory.getLogger(this.getClass());
@@ -23,35 +24,42 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public String createProduct(CreateProductRestModel productRestModel) throws Exception{
+    public String createProduct(CreateProductRestModel productRestModel) throws Exception {
 
         String productID = UUID.randomUUID().toString();
 
         // TODO: Persist product details into database table before publishing an event
-        
-        ProductCreatedEvent productCreatedEvent = new ProductCreatedEvent(productID, 
-        productRestModel.getTitle(),
-        productRestModel.getPrice(),
-        productRestModel.getQuantity());
+
+        ProductCreatedEvent productCreatedEvent = new ProductCreatedEvent(productID,
+                productRestModel.getTitle(),
+                productRestModel.getPrice(),
+                productRestModel.getQuantity());
 
         // Comented section is for the Asynschoronouus opration
-        // CompletableFuture<SendResult<String, ProductCreatedEvent>> future = 
-        //     kafkaTemplate.send("product-created-events-topic", productID, productCreatedEvent);
+        // CompletableFuture<SendResult<String, ProductCreatedEvent>> future =
+        // kafkaTemplate.send("product-created-events-topic", productID,
+        // productCreatedEvent);
 
         // future.whenComplete((result, exception) -> {
-        //     if(exception != null) {
-        //         LOGGGER.error("*** Failed to send message: " + exception.getMessage());
-        //     } else {
-        //         LOGGGER.info("*** Message sent successfully: " + result.getRecordMetadata());
-        //     }
+        // if(exception != null) {
+        // LOGGGER.error("*** Failed to send message: " + exception.getMessage());
+        // } else {
+        // LOGGGER.info("*** Message sent successfully: " + result.getRecordMetadata());
+        // }
         // });
 
         LOGGGER.info("Before publishing a ProductCreatedEvent");
 
-        SendResult<String, ProductCreatedEvent> result = 
-        kafkaTemplate.send("product-created-events-topic", productID, productCreatedEvent).get();
+        ProducerRecord<String, ProductCreatedEvent> record = new ProducerRecord<>("product-created-events-topic",
+                productID, productCreatedEvent);
+        record.headers().add("messageId", UUID.randomUUID().toString().getBytes());
 
-        LOGGGER.info("Topic: "+ result.getRecordMetadata().topic());
+        // SendResult<String, ProductCreatedEvent> result = kafkaTemplate
+        //         .send("product-created-events-topic", productID, productCreatedEvent).get();
+
+        SendResult<String, ProductCreatedEvent> result = kafkaTemplate.send(record).get();
+
+        LOGGGER.info("Topic: " + result.getRecordMetadata().topic());
         LOGGGER.info("Partition: " + result.getRecordMetadata().partition());
         LOGGGER.info("Offset: " + result.getRecordMetadata().offset());
 

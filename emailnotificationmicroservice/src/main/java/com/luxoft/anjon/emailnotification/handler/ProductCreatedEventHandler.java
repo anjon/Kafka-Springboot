@@ -7,6 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.annotation.KafkaHandler;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.support.KafkaHeaders;
+import org.springframework.messaging.handler.annotation.Header;
+import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.ResourceAccessException;
@@ -17,7 +20,7 @@ import com.luxoft.anjon.emailnotification.error.NotRetryableException;
 import com.luxoft.anjon.emailnotification.error.RetryableException;
 
 @Component
-@KafkaListener(topics="product-created-events-topic")
+@KafkaListener(topics = "product-created-events-topic")
 public class ProductCreatedEventHandler {
 
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
@@ -28,8 +31,11 @@ public class ProductCreatedEventHandler {
     }
 
     @KafkaHandler
-    public void handle(ProductCreatedEvent productCreatedEvent) {
-        LOGGER.info("Received a new events: " + productCreatedEvent.getTitle() + "with productID: " + productCreatedEvent.getProductID());
+    public void handle(@Payload ProductCreatedEvent productCreatedEvent, 
+            @Header("messageId") String messageId,
+            @Header(KafkaHeaders.RECEIVED_KEY) String messageKey) {
+        LOGGER.info("Received a new events: " + productCreatedEvent.getTitle() + "with productID: "
+                + productCreatedEvent.getProductID());
 
         String requestUrl = "http://localhost:8082/response/200";
         try {
@@ -37,19 +43,17 @@ public class ProductCreatedEventHandler {
             if (response.getStatusCode().value() == HttpStatus.OK.value()) {
                 LOGGER.info("Received response from a remote service" + response.getBody());
             }
-        } catch(ResourceAccessException ex) {
+        } catch (ResourceAccessException ex) {
             LOGGER.error(ex.getMessage());
             throw new RetryableException(ex);
-        } catch(HttpServerErrorException ex) {
+        } catch (HttpServerErrorException ex) {
             LOGGER.error(ex.getMessage());
             throw new NotRetryableException(ex);
-        } catch(Exception ex) {
+        } catch (Exception ex) {
             LOGGER.error(ex.getMessage());
             throw new NotRetryableException(ex);
         }
-        
 
-        
     }
 
 }
