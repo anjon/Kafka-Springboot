@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 public class ProductCreatedEvent {
 
-    private String productID;
+    private String productId;
     private String title;
     private BigDecimal price;
     private Integer quantity;
@@ -13,19 +13,19 @@ public class ProductCreatedEvent {
 
     }
 
-    public ProductCreatedEvent(String productID, String title, BigDecimal price, Integer quantity) {
-        this.productID = productID;
+    public ProductCreatedEvent(String productId, String title, BigDecimal price, Integer quantity) {
+        this.productId = productId;
         this.title = title;
         this.price = price;
         this.quantity = quantity;
     }
 
-    public String getProductID() {
-        return productID;
+    public String getProductId() {
+        return productId;
     }
 
-    public void setProductID(String productID) {
-        this.productID = productID;
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
 
     public String getTitle() {
