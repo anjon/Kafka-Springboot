@@ -7928,15 +7928,15 @@
     </pluginRepository>
   </pluginRepositories>
   <build>
-    <sourceDirectory>/workspaces/Kafka-Springboot/core/src/main/java</sourceDirectory>
-    <scriptSourceDirectory>/workspaces/Kafka-Springboot/core/src/main/scripts</scriptSourceDirectory>
-    <testSourceDirectory>/workspaces/Kafka-Springboot/core/src/test/java</testSourceDirectory>
-    <outputDirectory>/workspaces/Kafka-Springboot/core/target/classes</outputDirectory>
-    <testOutputDirectory>/workspaces/Kafka-Springboot/core/target/test-classes</testOutputDirectory>
+    <sourceDirectory>/workspaces/Kafka-Springboot/Stage-01/core/src/main/java</sourceDirectory>
+    <scriptSourceDirectory>/workspaces/Kafka-Springboot/Stage-01/core/src/main/scripts</scriptSourceDirectory>
+    <testSourceDirectory>/workspaces/Kafka-Springboot/Stage-01/core/src/test/java</testSourceDirectory>
+    <outputDirectory>/workspaces/Kafka-Springboot/Stage-01/core/target/classes</outputDirectory>
+    <testOutputDirectory>/workspaces/Kafka-Springboot/Stage-01/core/target/test-classes</testOutputDirectory>
     <resources>
       <resource>
         <filtering>true</filtering>
-        <directory>/workspaces/Kafka-Springboot/core/src/main/resources</directory>
+        <directory>/workspaces/Kafka-Springboot/Stage-01/core/src/main/resources</directory>
         <includes>
           <include>**/application*.yml</include>
           <include>**/application*.yaml</include>
@@ -7944,7 +7944,7 @@
         </includes>
       </resource>
       <resource>
-        <directory>/workspaces/Kafka-Springboot/core/src/main/resources</directory>
+        <directory>/workspaces/Kafka-Springboot/Stage-01/core/src/main/resources</directory>
         <excludes>
           <exclude>**/application*.yml</exclude>
           <exclude>**/application*.yaml</exclude>
@@ -7954,10 +7954,10 @@
     </resources>
     <testResources>
       <testResource>
-        <directory>/workspaces/Kafka-Springboot/core/src/test/resources</directory>
+        <directory>/workspaces/Kafka-Springboot/Stage-01/core/src/test/resources</directory>
       </testResource>
     </testResources>
-    <directory>/workspaces/Kafka-Springboot/core/target</directory>
+    <directory>/workspaces/Kafka-Springboot/Stage-01/core/target</directory>
     <finalName>core-0.0.1-SNAPSHOT</finalName>
     <pluginManagement>
       <plugins>
@@ -7978,7 +7978,7 @@
               </goals>
               <configuration>
                 <projectType>application</projectType>
-                <outputDirectory>/workspaces/Kafka-Springboot/core/target/classes/META-INF/sbom</outputDirectory>
+                <outputDirectory>/workspaces/Kafka-Springboot/Stage-01/core/target/classes/META-INF/sbom</outputDirectory>
                 <outputFormat>json</outputFormat>
                 <outputName>application.cdx</outputName>
               </configuration>
@@ -8002,14 +8002,14 @@
               <configuration>
                 <verbose>true</verbose>
                 <generateGitPropertiesFile>true</generateGitPropertiesFile>
-                <generateGitPropertiesFilename>/workspaces/Kafka-Springboot/core/target/classes/git.properties</generateGitPropertiesFilename>
+                <generateGitPropertiesFilename>/workspaces/Kafka-Springboot/Stage-01/core/target/classes/git.properties</generateGitPropertiesFilename>
               </configuration>
             </execution>
           </executions>
           <configuration>
             <verbose>true</verbose>
             <generateGitPropertiesFile>true</generateGitPropertiesFile>
-            <generateGitPropertiesFilename>/workspaces/Kafka-Springboot/core/target/classes/git.properties</generateGitPropertiesFilename>
+            <generateGitPropertiesFilename>/workspaces/Kafka-Springboot/Stage-01/core/target/classes/git.properties</generateGitPropertiesFilename>
           </configuration>
         </plugin>
         <plugin>
@@ -8100,12 +8100,12 @@
                 <goal>verify</goal>
               </goals>
               <configuration>
-                <classesDirectory>/workspaces/Kafka-Springboot/core/target/classes</classesDirectory>
+                <classesDirectory>/workspaces/Kafka-Springboot/Stage-01/core/target/classes</classesDirectory>
               </configuration>
             </execution>
           </executions>
           <configuration>
-            <classesDirectory>/workspaces/Kafka-Springboot/core/target/classes</classesDirectory>
+            <classesDirectory>/workspaces/Kafka-Springboot/Stage-01/core/target/classes</classesDirectory>
           </configuration>
         </plugin>
         <plugin>
@@ -8435,7 +8435,7 @@
               <goal>site</goal>
             </goals>
             <configuration>
-              <outputDirectory>/workspaces/Kafka-Springboot/core/target/site</outputDirectory>
+              <outputDirectory>/workspaces/Kafka-Springboot/Stage-01/core/target/site</outputDirectory>
               <reportPlugins>
                 <reportPlugin>
                   <groupId>org.apache.maven.plugins</groupId>
@@ -8451,7 +8451,7 @@
               <goal>deploy</goal>
             </goals>
             <configuration>
-              <outputDirectory>/workspaces/Kafka-Springboot/core/target/site</outputDirectory>
+              <outputDirectory>/workspaces/Kafka-Springboot/Stage-01/core/target/site</outputDirectory>
               <reportPlugins>
                 <reportPlugin>
                   <groupId>org.apache.maven.plugins</groupId>
@@ -8462,7 +8462,7 @@
           </execution>
         </executions>
         <configuration>
-          <outputDirectory>/workspaces/Kafka-Springboot/core/target/site</outputDirectory>
+          <outputDirectory>/workspaces/Kafka-Springboot/Stage-01/core/target/site</outputDirectory>
           <reportPlugins>
             <reportPlugin>
               <groupId>org.apache.maven.plugins</groupId>
@@ -8474,6 +8474,6 @@
     </plugins>
   </build>
   <reporting>
-    <outputDirectory>/workspaces/Kafka-Springboot/core/target/site</outputDirectory>
+    <outputDirectory>/workspaces/Kafka-Springboot/Stage-01/core/target/site</outputDirectory>
   </reporting>
 </project>
