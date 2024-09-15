@@ -1,0 +1,12 @@
+{"properties": [
+  {
+    "name": "withdraw-money-topic",
+    "type": "java.lang.String",
+    "description": "A description for 'withdraw-money-topic'"
+  },
+  {
+    "name": "deposit-money-topic",
+    "type": "java.lang.String",
+    "description": "A description for 'deposit-money-topic'"
+  }
+]}
