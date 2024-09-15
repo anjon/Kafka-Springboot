@@ -7,7 +7,7 @@
 <!-- ====================================================================== -->
 <!-- ====================================================================== -->
 <!--                                                                        -->
-<!-- Effective POM for project 'com.luxoft.anjon:core:jar:0.0.1-SNAPSHOT'   -->
+<!-- Effective POM for project 'com.intrum.anjon:core:jar:0.0.1-SNAPSHOT'   -->
 <!--                                                                        -->
 <!-- ====================================================================== -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -18,7 +18,7 @@
     <version>3.3.3</version>
     <relativePath />
   </parent>
-  <groupId>com.luxoft.anjon</groupId>
+  <groupId>com.intrum.anjon</groupId>
   <artifactId>core</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>core</name>

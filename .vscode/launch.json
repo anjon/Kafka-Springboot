@@ -30,6 +30,46 @@
             "projectName": "com.appsdeveloperblog.estore-transfers",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-PaymentsApplication<transfers>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.anjon.estore.transfers.PaymentsApplication",
+            "projectName": "transfers",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-MockserviceApplication<mockservice>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.appsdeveloperblog.ws.mockservice.MockserviceApplication",
+            "projectName": "mockservice",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-DepositServiceApplication<DepositService>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.anjon.estore.DepositService.DepositServiceApplication",
+            "projectName": "DepositService",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-WithdrawalServiceApplication<WithdrawalService>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.anjon.estore.WithdrawalService.WithdrawalServiceApplication",
+            "projectName": "WithdrawalService",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }
