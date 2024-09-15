@@ -1,8 +1,8 @@
 package com.anjon.estore.transfers.ui;
 
 import org.springframework.web.bind.annotation.RestController;
-import com.intrum.estore.transfers.model.TransferRestModel;
-import com.intrum.estore.transfers.service.TransferService;
+import com.anjon.estore.transfers.model.TransferRestModel;
+import com.anjon.estore.transfers.service.TransferService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
