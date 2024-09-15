@@ -14,7 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RestController
 @RequestMapping("/transfers")
 public class TransfersController {
+    
+    @SuppressWarnings("unused")
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
+    
     
     private TransferService transferService;
 
