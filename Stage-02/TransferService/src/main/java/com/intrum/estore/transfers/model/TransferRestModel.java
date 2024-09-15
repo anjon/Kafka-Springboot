@@ -1,4 +1,4 @@
-package com.appsdeveloperblog.estore.transfers.model;
+package com.intrum.estore.transfers.model;
 
 import java.math.BigDecimal;
 

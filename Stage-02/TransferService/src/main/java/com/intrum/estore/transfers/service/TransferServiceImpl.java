@@ -1,4 +1,4 @@
-package com.appsdeveloperblog.estore.transfers.service;
+package com.intrum.estore.transfers.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,8 +10,8 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.appsdeveloperblog.estore.transfers.error.TransferServiceException;
-import com.appsdeveloperblog.estore.transfers.model.TransferRestModel;
+import com.intrum.estore.transfers.error.TransferServiceException;
+import com.intrum.estore.transfers.model.TransferRestModel;
 import com.appsdeveloperblog.payments.ws.core.events.DepositRequestedEvent;
 import com.appsdeveloperblog.payments.ws.core.events.WithdrawalRequestedEvent;
 

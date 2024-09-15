@@ -1,4 +1,4 @@
-package com.appsdeveloperblog.estore.transfers;
+package com.intrum.estore.transfers;
 
 import java.util.HashMap;
 import java.util.Map;

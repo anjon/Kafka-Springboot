@@ -1,9 +1,9 @@
-package com.appsdeveloperblog.estore.transfers.ui;
+package com.intrum.estore.transfers.ui;
 
 import org.springframework.web.bind.annotation.RestController;
 
-import com.appsdeveloperblog.estore.transfers.model.TransferRestModel;
-import com.appsdeveloperblog.estore.transfers.service.TransferService;
+import com.intrum.estore.transfers.model.TransferRestModel;
+import com.intrum.estore.transfers.service.TransferService;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
