@@ -1,4 +1,4 @@
-package com.appsdeveloperblog.estore.DepositService;
+package com.anjon.estore.DepositService;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

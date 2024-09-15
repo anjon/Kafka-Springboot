@@ -1,4 +1,4 @@
-package com.appsdeveloperblog.estore.DepositService;
+package com.anjon.estore.DepositService;
 
 import java.util.HashMap;
 import java.util.Map;
