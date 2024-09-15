@@ -1,4 +1,4 @@
-package com.appsdeveloperblog.estore.transfers.service;
+package com.anjon.estore.transfers.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
-import com.appsdeveloperblog.estore.transfers.error.TransferServiceException;
-import com.appsdeveloperblog.estore.transfers.model.TransferRestModel;
+import com.anjon.estore.transfers.error.TransferServiceException;
+import com.anjon.estore.transfers.model.TransferRestModel;
 import com.appsdeveloperblog.payments.ws.core.events.DepositRequestedEvent;
 import com.appsdeveloperblog.payments.ws.core.events.WithdrawalRequestedEvent;
 
@@ -31,7 +31,7 @@ public class TransferServiceImpl implements TransferService {
 		this.restTemplate = restTemplate;
 	}
 
-	@Transactional
+	@Transactional("kafkaTransactionManager")
 	@Override
 	public boolean transfer(TransferRestModel transferRestModel) {
 		WithdrawalRequestedEvent withdrawalEvent = new WithdrawalRequestedEvent(transferRestModel.getSenderId(),

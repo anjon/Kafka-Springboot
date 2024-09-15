@@ -1,4 +1,4 @@
-package com.appsdeveloperblog.estore.transfers;
+package com.anjon.estore.transfers;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,6 +13,9 @@ import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
 import org.springframework.kafka.transaction.KafkaTransactionManager;
+import org.springframework.orm.jpa.JpaTransactionManager;
+
+import jakarta.persistence.EntityManagerFactory;
 
 @Configuration
 public class KafkaConfig {
@@ -81,18 +84,23 @@ public class KafkaConfig {
 		return new KafkaTemplate<>(producerFactory);
 	}
 
-	@Bean
+	@Bean("kafkaTransactionManager")
 	KafkaTransactionManager<String, Object> kafkaTransactionManager(ProducerFactory<String, Object> producerFactory) {
 		return new KafkaTransactionManager<>(producerFactory);
+	}
+
+	@Bean("transactionManager")
+	JpaTransactionManager jpaTransactionManager(EntityManagerFactory entityManagerFactory) {
+		return new JpaTransactionManager(entityManagerFactory);
 	}
 	
 	@Bean
 	NewTopic createWithdrawTopic() {
-		return TopicBuilder.name(withdrawTopicName).partitions(3).replicas(3).build();
+		return TopicBuilder.name(withdrawTopicName).partitions(3).replicas(1).build();
 	}
 
 	@Bean
 	NewTopic createDepositTopic() {
-		return TopicBuilder.name(depositTopicName).partitions(3).replicas(3).build();
+		return TopicBuilder.name(depositTopicName).partitions(3).replicas(1).build();
 	}
 }

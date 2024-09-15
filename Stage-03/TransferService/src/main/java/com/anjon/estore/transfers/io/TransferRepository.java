@@ -1,4 +1,4 @@
-package com.appsdeveloperblog.estore.transfers.io;
+package com.anjon.estore.transfers.io;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
