@@ -20,6 +20,16 @@
             "projectName": "emailnotificationmicroservice",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-PaymentsApplication<com.appsdeveloperblog.estore-transfers>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.anjon.estore.transfers.PaymentsApplication",
+            "projectName": "com.appsdeveloperblog.estore-transfers",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }

@@ -65,6 +65,7 @@ public class KafkaConfig {
 
 		props.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, idempotence);
 		props.put(ProducerConfig.MAX_IN_FLIGHT_REQUESTS_PER_CONNECTION, inflightRequests);
+		props.put(ProducerConfig.TRANSACTIONAL_ID_CONFIG, transactionalIdPrefix);
 
 		return props;
 	}
@@ -76,7 +77,7 @@ public class KafkaConfig {
 
 	@Bean
 	KafkaTemplate<String, Object> kafkaTemplate(ProducerFactory<String, Object> producerFactory) {
-		return new KafkaTemplate<String, Object>(producerFactory());
+		return new KafkaTemplate<String, Object>(producerFactory);
 	}
 
 	@Bean
@@ -86,11 +87,11 @@ public class KafkaConfig {
 
 	@Bean
 	NewTopic createWithdrawTopic() {
-		return TopicBuilder.name(withdrawTopicName).partitions(3).replicas(3).build();
+		return TopicBuilder.name(withdrawTopicName).partitions(3).replicas(1).build();
 	}
 
 	@Bean
 	NewTopic createDepositTopic() {
-		return TopicBuilder.name(depositTopicName).partitions(3).replicas(3).build();
+		return TopicBuilder.name(depositTopicName).partitions(3).replicas(1).build();
 	}
 }
