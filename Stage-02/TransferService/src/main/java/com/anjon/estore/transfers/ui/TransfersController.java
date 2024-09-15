@@ -1,4 +1,4 @@
-package com.intrum.estore.transfers.ui;
+package com.anjon.estore.transfers.ui;
 
 import org.springframework.web.bind.annotation.RestController;
 import com.intrum.estore.transfers.model.TransferRestModel;

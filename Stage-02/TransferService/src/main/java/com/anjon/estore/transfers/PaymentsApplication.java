@@ -1,4 +1,4 @@
-package com.intrum.estore.transfers;
+package com.anjon.estore.transfers;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
