@@ -28,7 +28,7 @@ public class ProductServiceImpl implements ProductService {
 
         String productID = UUID.randomUUID().toString();
 
-        // TODO: Persist product details into database table before publishing an event
+        //  Persist product details into database table before publishing an event
 
         ProductCreatedEvent productCreatedEvent = new ProductCreatedEvent(productID,
                 productRestModel.getTitle(),
