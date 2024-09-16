@@ -16,7 +16,13 @@ public class ProductsServiceIntegrationTest {
 
     @Test
     void testCreateProduct_whenGivenvalidProductDetails_successfullSendsKafkaMessage() {
+        
+        // Arrange
+
+        // Act
+
+        // Assert
 
     }
-    
+
 }
