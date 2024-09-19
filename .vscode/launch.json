@@ -70,6 +70,16 @@
             "projectName": "WithdrawalService",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ProductsmicroserviceApplication<com.intrum.anjon-productsmicroservice>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.luxoft.anjon.products.ProductsmicroserviceApplication",
+            "projectName": "com.intrum.anjon-productsmicroservice",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }
