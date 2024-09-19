@@ -1,9 +1,12 @@
 package com.luxoft.anjon.emailnotification;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.ArgumentMatchers.isNull;
+import static org.mockito.Mockito.timeout;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.math.BigDecimal;
@@ -11,18 +14,23 @@ import java.util.UUID;
 
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.kafka.test.context.EmbeddedKafka;
 import org.springframework.web.client.RestTemplate;
 
 import com.luxoft.anjon.core.ProductCreatedEvent;
+import com.luxoft.anjon.emailnotification.handler.ProductCreatedEventHandler;
 import com.luxoft.anjon.emailnotification.io.ProcessedEventEntity;
 import com.luxoft.anjon.emailnotification.io.ProcessedEventRepository;
 
@@ -36,8 +44,14 @@ public class ProductCreatedEventHandlerIntegrationTest {
     @MockBean
     RestTemplate restTemplate;
 
+    @Autowired
+    KafkaTemplate<String, Object> kafkaTemplate;
+
+    @SpyBean
+    ProductCreatedEventHandler productCreatedEventHandler;
+
     @Test
-    public void testProductCreatedEventHandler_OnProductCreated_HandlersEvent() {
+    public void testProductCreatedEventHandler_OnProductCreated_HandlersEvent() throws Exception {
         // Arrange
         ProductCreatedEvent productCreatedEvent = new ProductCreatedEvent();
         productCreatedEvent.setProductId(UUID.randomUUID().toString());
@@ -48,7 +62,7 @@ public class ProductCreatedEventHandlerIntegrationTest {
         String messageId = UUID.randomUUID().toString();
         String messageKey = productCreatedEvent.getProductId();
 
-        ProducerRecord<String, ProductCreatedEvent> record = new ProducerRecord<String, ProductCreatedEvent>(
+        ProducerRecord<String, Object> record = new ProducerRecord<>(
                 "product-created-events-topic", messageKey,
                 productCreatedEvent);
 
@@ -64,14 +78,25 @@ public class ProductCreatedEventHandlerIntegrationTest {
         headers.setContentType(MediaType.APPLICATION_JSON);
         ResponseEntity<String> responseEntity = new ResponseEntity<>(responseBody, headers, HttpStatus.OK);
 
-        when(restTemplate.exchange(any(String.class), 
-                any(HttpMethod.class), 
-                isNull(), 
+        when(restTemplate.exchange(any(String.class),
+                any(HttpMethod.class),
+                isNull(),
                 eq(String.class)))
-        .thenReturn(responseEntity);
-        
+                .thenReturn(responseEntity);
+
         // Act
+        kafkaTemplate.send(record).get();
 
         // Assert
+        ArgumentCaptor<String> messageIdCaptor = ArgumentCaptor.forClass(String.class);
+        ArgumentCaptor<String> messageKeyCaptor = ArgumentCaptor.forClass(String.class);
+        ArgumentCaptor<ProductCreatedEvent> eventCaptor = ArgumentCaptor.forClass(ProductCreatedEvent.class);
+
+        verify(productCreatedEventHandler, timeout(5000).times(1)).handle(eventCaptor.capture(),
+                messageIdCaptor.capture(), messageKeyCaptor.capture());
+        
+        assertEquals(messageId, messageIdCaptor.getValue());
+        assertEquals(messageKey, messageKeyCaptor.getValue());
+        assertEquals(productCreatedEvent.getProductId(), eventCaptor.getValue().getProductId());
     }
 }
