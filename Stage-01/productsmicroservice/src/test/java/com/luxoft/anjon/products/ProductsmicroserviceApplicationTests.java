@@ -1,4 +1,4 @@
-package com.luxoft.anjon.productsmicroservice;
+package com.luxoft.anjon.products;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
